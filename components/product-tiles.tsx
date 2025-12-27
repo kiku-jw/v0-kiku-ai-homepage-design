@@ -37,18 +37,17 @@ export function ProductTiles() {
                     <polyline
                       points="12,38 25,30 38,35 50,20 63,25 73,12"
                       fill="none"
-                      stroke="hsl(var(--primary))"
+                      stroke="#22C55E"
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
-                    {/* Data points */}
-                    <circle cx="12" cy="38" r="2" fill="hsl(var(--primary))" />
-                    <circle cx="25" cy="30" r="2" fill="hsl(var(--primary))" />
-                    <circle cx="38" cy="35" r="2" fill="hsl(var(--primary))" />
-                    <circle cx="50" cy="20" r="2" fill="hsl(var(--primary))" />
-                    <circle cx="63" cy="25" r="2" fill="hsl(var(--primary))" />
-                    <circle cx="73" cy="12" r="2" fill="hsl(var(--primary))" />
+                    <circle cx="12" cy="38" r="3" fill="#22C55E" />
+                    <circle cx="25" cy="30" r="3" fill="#22C55E" />
+                    <circle cx="38" cy="35" r="3" fill="#22C55E" />
+                    <circle cx="50" cy="20" r="3" fill="#22C55E" />
+                    <circle cx="63" cy="25" r="3" fill="#22C55E" />
+                    <circle cx="73" cy="12" r="3" fill="#22C55E" />
                   </svg>
                 </div>
 

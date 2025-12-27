@@ -14,9 +14,7 @@ export function Hero() {
         <h1 className="text-balance text-4xl font-semibold tracking-tight md:text-5xl lg:text-6xl">
           Turn messy inputs into <span className="text-primary">usable data</span>
         </h1>
-        <p className="mx-auto mt-5 max-w-md text-muted-foreground md:text-lg">
-          Extract data from charts. Cluster spam patterns. API + dashboard.
-        </p>
+        <p className="mx-auto mt-5 text-sm text-muted-foreground/70">Pick a workflow below.</p>
       </motion.div>
     </section>
   )
