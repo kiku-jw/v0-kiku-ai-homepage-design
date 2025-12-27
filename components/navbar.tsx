@@ -1,10 +1,14 @@
 "use client"
 
 import Link from "next/link"
-import { motion } from "framer-motion"
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function Navbar() {
+  const [productsOpen, setProductsOpen] = useState(false)
+
   return (
     <motion.header
       initial={{ opacity: 0, y: -10 }}
@@ -20,19 +24,57 @@ export function Navbar() {
           <span className="text-lg font-semibold tracking-tight">KikuAI</span>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
-          <Link
-            href="/products/chart2csv"
-            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+        <nav className="hidden items-center gap-6 md:flex">
+          <div
+            className="relative"
+            onMouseEnter={() => setProductsOpen(true)}
+            onMouseLeave={() => setProductsOpen(false)}
           >
-            Products
-          </Link>
-          <Link href="/pricing" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-            Pricing
-          </Link>
-          <Link href="/docs" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-            Docs
-          </Link>
+            <button className="flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground">
+              Products
+              <ChevronDown className="h-3.5 w-3.5" />
+            </button>
+            <AnimatePresence>
+              {productsOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 8 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute left-0 top-full pt-2"
+                >
+                  <div className="w-48 rounded-xl border border-border/60 bg-card/95 p-2 shadow-xl backdrop-blur-xl">
+                    <Link
+                      href="/products/chart2csv"
+                      className="block rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                    >
+                      Chart → CSV
+                    </Link>
+                    <Link
+                      href="/products/patas"
+                      className="block rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                    >
+                      Logs → Rules
+                    </Link>
+                    <div className="my-2 border-t border-border/40" />
+                    <Link
+                      href="/pricing"
+                      className="block rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                    >
+                      Pricing
+                    </Link>
+                    <Link
+                      href="/docs"
+                      className="block rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                    >
+                      Docs
+                    </Link>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
           <Link
             href="/status"
             className="text-xs text-muted-foreground/70 transition-colors hover:text-muted-foreground"

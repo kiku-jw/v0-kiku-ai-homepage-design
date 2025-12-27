@@ -15,7 +15,7 @@ export function Hero() {
           Turn messy inputs into <span className="text-primary">usable data</span>
         </h1>
         <p className="mx-auto mt-5 max-w-md text-muted-foreground md:text-lg">
-          Extract tables from charts. Cluster spam patterns. API + dashboard.
+          Extract data from charts. Cluster spam patterns. API + dashboard.
         </p>
       </motion.div>
     </section>

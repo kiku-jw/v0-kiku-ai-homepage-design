@@ -4,7 +4,6 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight, ImageIcon, MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { TypewriterCode } from "@/components/typewriter-code"
 
 export function ProductTiles() {
   return (
@@ -27,15 +26,29 @@ export function ProductTiles() {
                 <h2 className="text-xl font-semibold">Chart → CSV</h2>
               </div>
 
-              {/* Before → After Preview */}
-              <div className="mb-6 flex items-center gap-4 rounded-xl bg-secondary/50 p-4">
-                {/* Before: Chart thumbnail */}
-                <div className="flex h-20 w-24 flex-shrink-0 items-center justify-center rounded-lg border border-border bg-background/50">
-                  <svg viewBox="0 0 60 40" className="h-12 w-16 text-muted-foreground/50">
-                    <rect x="5" y="25" width="8" height="12" fill="currentColor" opacity="0.6" />
-                    <rect x="17" y="15" width="8" height="22" fill="currentColor" opacity="0.8" />
-                    <rect x="29" y="20" width="8" height="17" fill="currentColor" opacity="0.7" />
-                    <rect x="41" y="8" width="8" height="29" fill="currentColor" />
+              <div className="mb-6 flex items-center gap-3 rounded-xl bg-secondary/50 p-4">
+                {/* Before: Line chart thumbnail */}
+                <div className="flex h-24 w-28 flex-shrink-0 items-center justify-center rounded-lg border border-border bg-background/50 p-2">
+                  <svg viewBox="0 0 80 50" className="h-full w-full">
+                    {/* Grid lines */}
+                    <line x1="10" y1="10" x2="10" y2="45" stroke="currentColor" strokeOpacity="0.1" />
+                    <line x1="10" y1="45" x2="75" y2="45" stroke="currentColor" strokeOpacity="0.1" />
+                    {/* Line chart */}
+                    <polyline
+                      points="12,38 25,30 38,35 50,20 63,25 73,12"
+                      fill="none"
+                      stroke="hsl(var(--primary))"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    {/* Data points */}
+                    <circle cx="12" cy="38" r="2" fill="hsl(var(--primary))" />
+                    <circle cx="25" cy="30" r="2" fill="hsl(var(--primary))" />
+                    <circle cx="38" cy="35" r="2" fill="hsl(var(--primary))" />
+                    <circle cx="50" cy="20" r="2" fill="hsl(var(--primary))" />
+                    <circle cx="63" cy="25" r="2" fill="hsl(var(--primary))" />
+                    <circle cx="73" cy="12" r="2" fill="hsl(var(--primary))" />
                   </svg>
                 </div>
 
@@ -43,15 +56,35 @@ export function ProductTiles() {
                 <motion.div
                   animate={{ x: [0, 4, 0] }}
                   transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                  className="flex-shrink-0"
                 >
                   <ArrowRight className="h-5 w-5 text-primary" />
                 </motion.div>
 
-                {/* After: CSV snippet */}
-                <div className="flex-1 overflow-hidden rounded-lg border border-border bg-background/50 p-2 font-mono text-xs">
-                  <div className="text-muted-foreground">date,value</div>
-                  <div className="text-foreground/80">2024-01,42</div>
-                  <div className="text-foreground/80">2024-02,67</div>
+                {/* After: 3-row table */}
+                <div className="flex-1 overflow-hidden rounded-lg border border-border bg-background/50">
+                  <table className="w-full font-mono text-[10px]">
+                    <thead>
+                      <tr className="border-b border-border/50 bg-secondary/30">
+                        <th className="px-2 py-1.5 text-left text-muted-foreground font-medium">date</th>
+                        <th className="px-2 py-1.5 text-left text-muted-foreground font-medium">value</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b border-border/30">
+                        <td className="px-2 py-1 text-foreground/80">2024-01</td>
+                        <td className="px-2 py-1 text-foreground/80">42</td>
+                      </tr>
+                      <tr className="border-b border-border/30">
+                        <td className="px-2 py-1 text-foreground/80">2024-02</td>
+                        <td className="px-2 py-1 text-foreground/80">67</td>
+                      </tr>
+                      <tr>
+                        <td className="px-2 py-1 text-foreground/80">2024-03</td>
+                        <td className="px-2 py-1 text-foreground/80">58</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
 
@@ -79,26 +112,63 @@ export function ProductTiles() {
                 <h2 className="text-xl font-semibold">Logs → Rules</h2>
               </div>
 
-              {/* Before → After Preview */}
-              <div className="mb-6 flex items-center gap-4 rounded-xl bg-secondary/50 p-4">
-                {/* Before: Log lines */}
-                <div className="flex w-28 flex-shrink-0 flex-col gap-1 overflow-hidden rounded-lg border border-border bg-background/50 p-2 font-mono text-[10px]">
-                  <div className="truncate text-muted-foreground">Buy now! 🔥</div>
-                  <div className="truncate text-muted-foreground">Click bit.ly/...</div>
-                  <div className="truncate text-foreground/60">Hello team</div>
+              <div className="mb-6 flex items-center gap-3 rounded-xl bg-secondary/50 p-4">
+                {/* Before: Chat/log lines */}
+                <div className="flex w-28 flex-shrink-0 flex-col gap-1.5 overflow-hidden rounded-lg border border-border bg-background/50 p-2">
+                  <div className="flex items-start gap-1.5">
+                    <span className="mt-0.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-400/70" />
+                    <span className="font-mono text-[9px] text-muted-foreground leading-tight">Buy now! 🔥🔥</span>
+                  </div>
+                  <div className="flex items-start gap-1.5">
+                    <span className="mt-0.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-400/70" />
+                    <span className="font-mono text-[9px] text-muted-foreground leading-tight">Click bit.ly/x</span>
+                  </div>
+                  <div className="flex items-start gap-1.5">
+                    <span className="mt-0.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-emerald-400/70" />
+                    <span className="font-mono text-[9px] text-foreground/60 leading-tight">Hello team</span>
+                  </div>
+                  <div className="flex items-start gap-1.5">
+                    <span className="mt-0.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber-400/70" />
+                    <span className="font-mono text-[9px] text-muted-foreground leading-tight">Free gift!</span>
+                  </div>
                 </div>
 
                 {/* Arrow */}
                 <motion.div
                   animate={{ x: [0, 4, 0] }}
                   transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.3 }}
+                  className="flex-shrink-0"
                 >
                   <ArrowRight className="h-5 w-5 text-primary" />
                 </motion.div>
 
-                {/* After: JSON rules */}
-                <div className="flex-1 overflow-hidden rounded-lg border border-border bg-background/50 p-2 font-mono text-[10px]">
-                  <TypewriterCode />
+                {/* After: Complete JSON rules (4-6 lines, no truncation) */}
+                <div className="flex-1 overflow-hidden rounded-lg border border-border bg-background/50 p-2 font-mono text-[9px] leading-relaxed">
+                  <div className="text-muted-foreground">{"{"}</div>
+                  <div className="pl-2">
+                    <span className="text-cyan-400">"pattern"</span>
+                    <span className="text-muted-foreground">: </span>
+                    <span className="text-amber-400">"emoji_spam"</span>
+                    <span className="text-muted-foreground">,</span>
+                  </div>
+                  <div className="pl-2">
+                    <span className="text-cyan-400">"action"</span>
+                    <span className="text-muted-foreground">: </span>
+                    <span className="text-emerald-400">"BLOCK"</span>
+                    <span className="text-muted-foreground">,</span>
+                  </div>
+                  <div className="pl-2">
+                    <span className="text-cyan-400">"confidence"</span>
+                    <span className="text-muted-foreground">: </span>
+                    <span className="text-purple-400">0.94</span>
+                    <span className="text-muted-foreground">,</span>
+                  </div>
+                  <div className="pl-2">
+                    <span className="text-cyan-400">"reason"</span>
+                    <span className="text-muted-foreground">: </span>
+                    <span className="text-amber-400">"url+emoji"</span>
+                  </div>
+                  <div className="text-muted-foreground">{"}"}</div>
                 </div>
               </div>
 
