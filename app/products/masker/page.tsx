@@ -1,8 +1,8 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, ArrowRight, MessageSquare, Shield, Brain, Sparkles } from "lucide-react"
+import { ArrowLeft, ArrowRight, EyeOff, Lock, Zap, Globe } from "lucide-react"
 
-export default function PATASPage() {
+export default function MaskerPage() {
   return (
     <div className="noise-bg grid-bg min-h-screen">
       {/* Header */}
@@ -16,7 +16,7 @@ export default function PATASPage() {
             Back
           </Link>
           <Button asChild size="sm" className="rounded-xl bg-primary text-primary-foreground hover:bg-primary/90">
-            <Link href="/products/patas/demo">Try Demo</Link>
+            <Link href="/products/masker/demo">Try Demo</Link>
           </Button>
         </div>
       </div>
@@ -25,52 +25,40 @@ export default function PATASPage() {
       <div className="mx-auto max-w-5xl px-6 py-16">
         <div className="mb-12 text-center">
           <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 border border-primary/20">
-            <MessageSquare className="h-8 w-8 text-primary" />
+            <EyeOff className="h-8 w-8 text-primary" />
           </div>
-          <h1 className="mb-4 text-4xl font-semibold tracking-tight">Logs → Rules</h1>
+          <h1 className="mb-4 text-4xl font-semibold tracking-tight">Masker</h1>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            Upload chat logs or message datasets and get AI-generated spam detection rules. PATAS clusters patterns and
-            outputs JSON blocking rules ready for production.
+            PII masking API. Automatically detect and redact emails, phone numbers, addresses, and other sensitive data
+            before sending to LLMs.
           </p>
         </div>
 
         {/* Visual Demo */}
         <div className="mb-16 rounded-2xl border border-border/60 bg-card/30 p-8">
           <div className="flex items-center justify-center gap-8">
-            {/* Input: Logs */}
+            {/* Input */}
             <div className="flex-1 rounded-xl border border-border/40 bg-background/50 p-6">
               <p className="mb-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">Input</p>
-              <div className="space-y-2 font-mono text-xs">
-                <div className="rounded bg-muted/30 px-3 py-2 border-l-2 border-yellow-500/50">
-                  <span className="text-yellow-500">[WARN]</span> Free V-Bucks click here...
-                </div>
-                <div className="rounded bg-muted/30 px-3 py-2 border-l-2 border-red-500/50">
-                  <span className="text-red-500">[SPAM]</span> Get rich quick scheme!!!
-                </div>
-                <div className="rounded bg-muted/30 px-3 py-2 border-l-2 border-muted-foreground/30">
-                  <span className="text-muted-foreground">[INFO]</span> Normal user message
-                </div>
-                <div className="rounded bg-muted/30 px-3 py-2 border-l-2 border-red-500/50">
-                  <span className="text-red-500">[SPAM]</span> Buy followers now!!!
-                </div>
+              <div className="rounded-lg bg-muted/30 p-4 font-mono text-sm border border-border/30">
+                <p>Contact John at</p>
+                <p className="text-red-400">john@acme.com</p>
+                <p>or call</p>
+                <p className="text-red-400">+1-555-123-4567</p>
               </div>
-              <p className="mt-3 text-xs text-muted-foreground text-center">chat_logs.jsonl</p>
             </div>
 
             <ArrowRight className="h-6 w-6 text-primary flex-shrink-0" />
 
-            {/* Output: JSON Rules */}
+            {/* Output */}
             <div className="flex-1 rounded-xl border border-border/40 bg-background/50 p-6">
               <p className="mb-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">Output</p>
-              <pre className="rounded-lg bg-muted/30 p-4 text-xs font-mono border border-border/30 overflow-hidden">
-                {`{
-  "action": "BLOCK",
-  "pattern": "free.*v-?bucks",
-  "confidence": 0.94,
-  "cluster": "gaming_scam"
-}`}
-              </pre>
-              <p className="mt-3 text-xs text-muted-foreground text-center">rules.json</p>
+              <div className="rounded-lg bg-muted/30 p-4 font-mono text-sm border border-border/30">
+                <p>Contact John at</p>
+                <p className="text-primary">[EMAIL_1]</p>
+                <p>or call</p>
+                <p className="text-primary">[PHONE_1]</p>
+              </div>
             </div>
           </div>
         </div>
@@ -78,9 +66,9 @@ export default function PATASPage() {
         {/* Features */}
         <div className="grid gap-6 md:grid-cols-3 mb-16">
           {[
-            { icon: Brain, title: "AI Clustering", desc: "Automatically groups similar spam patterns" },
-            { icon: Shield, title: "Production Ready", desc: "Export rules compatible with Discord, Slack, etc." },
-            { icon: Sparkles, title: "Auto-tune", desc: "Suggests SAFE_AUTO or REVIEW_ONLY modes" },
+            { icon: Lock, title: "GDPR Compliant", desc: "Helps meet data protection requirements" },
+            { icon: Zap, title: "Fast API", desc: "Sub-100ms latency for real-time masking" },
+            { icon: Globe, title: "Multi-language", desc: "Supports 20+ languages and formats" },
           ].map((feature) => (
             <div key={feature.title} className="rounded-xl border border-border/40 bg-card/20 p-6">
               <feature.icon className="mb-3 h-5 w-5 text-primary" />
@@ -93,20 +81,20 @@ export default function PATASPage() {
         {/* Pricing */}
         <div className="rounded-2xl border border-border/60 bg-card/30 p-8 text-center">
           <h2 className="mb-2 text-xl font-semibold">Pricing</h2>
-          <p className="mb-6 text-muted-foreground">Pay per analysis batch</p>
+          <p className="mb-6 text-muted-foreground">Pay per API call</p>
           <div className="inline-flex items-baseline gap-1">
-            <span className="text-4xl font-bold text-primary">$0.10</span>
-            <span className="text-muted-foreground">/ 1000 messages</span>
+            <span className="text-4xl font-bold text-primary">$0.001</span>
+            <span className="text-muted-foreground">/ request</span>
           </div>
-          <p className="mt-4 text-sm text-muted-foreground">Minimum 100 messages per batch</p>
+          <p className="mt-4 text-sm text-muted-foreground">First 1,000 requests free each month</p>
           <Button asChild className="mt-6 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90">
-            <Link href="/products/patas/demo">Analyze Logs</Link>
+            <Link href="/products/masker/demo">Try Masker</Link>
           </Button>
         </div>
 
         {/* Docs Link */}
         <div className="mt-8 text-center">
-          <Link href="/docs/patas" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+          <Link href="/docs/masker" className="text-sm text-muted-foreground hover:text-primary transition-colors">
             Read the documentation →
           </Link>
         </div>
